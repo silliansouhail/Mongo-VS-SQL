@@ -1,0 +1,53 @@
+What are the main differences between MongoDB and MySQL?
+MySQL
+MySQL is a popular, free-to-use, and open-source relational database management system (RDBMS) developed by Oracle. As with other relational systems, MySQL stores data using tables and rows, enforces referential integrity, and uses structured query language (SQL) for data access. When users need to retrieve data from a MySQL database, they must construct an SQL query that joins multiple tables together to create the view on the data they require.
+
+Database schemas and data models need to be defined ahead of time, and data must match this schema to be stored in the database. This rigid approach to storing data offers some degree of safety, but trades this for flexibility. If a new type or format of data needs to be stored in the database, schema migration must occur, which can become complex and expensive as the size of the database grows.
+
+MongoDB
+MongoDB is also free to use and open source; however, its design principles differ from traditional relational systems. Often styled as a non-relational (or NoSQL) system, MongoDB adopts a significantly different approach to storing data, representing information as a series of JSON-like documents (actually stored as binary JSON, or BSON), as opposed to the table and row format of relational systems.
+
+MongoDB documents consist of a series of key/value pairs of varying types, including arrays and nested documents; however, the primary difference is that the structure of the key/value pairs in a given collection can vary from document to document. This more flexible approach is possible because documents are self-describing.
+
+
+
+When to use MongoDB vs. MySQL
+The core differences between these two database systems are significant. Choosing which one to use is really a question of approach rather than purely a technical decision.
+
+MySQL is a mature relational database system, offering a familiar database environment for experienced IT professionals.
+
+MongoDB is a well-established, non-relational database system offering improved flexibility and horizontal scalability, but at the cost of some safety features of relational databases, such as referential integrity.
+
+Which one should you choose?
+
+In the following sections, we’re going to look at some of the different considerations when deciding between MongoDB and MySQL.
+
+
+
+MongoDB vs. MySQL scalability
+A key benefit of the MongoDB design is that the database is extremely easy to scale. Configuring a sharded cluster allows a portion of the database, called a shard, to also be configured as a replica set. In a sharded cluster, data is distributed across many servers. This highly flexible approach allows MongoDB to horizontally scale both read and write performance to cater to applications of any scale.
+
+A replica set is the replication of a group of MongoDB servers that hold the same data, ensuring high availability and disaster recovery.
+
+With a MySQL database system, options for scalability are much more limited. Typically, you have two choices: vertical scalability, or adding read replicas. Scaling vertically involves adding more resources to the existing database server, but this has an inherent upper limit.
+
+Read replication involves adding read-only copies of the database to other servers. However, this is typically limited to five replicas in total, which can only be used for read operations. This can cause issues with applications that are either write-heavy, or write and read regularly for the database, since it’s common for replicas to lag behind the write master. Multi-master replication support has been added to MySQL, but its implementation is more limited than the functionality available in MongoDB.
+
+
+
+MongoDB vs. MySQL flexibility
+This is an easy one, and a hands-down win for MongoDB. The schemaless design of MongoDB documents makes it extremely easy to build and enhance applications over time, without needing to run complex and expensive schema migration processes as you would with a relational database.
+
+With MongoDB, there are more dynamic options for updating the schema of a collection, such as creating new fields based on an aggregation pipeline or updating nested array fields. This benefit is particularly important as databases grow in size. In contrast, larger MySQL databases are slower to migrate schemas and stored procedures that can be dependent on the updated schemas. MongoDB’s flexible design makes this much less of a concern.
+
+It’s worth pointing out that both databases have a lot in common. Both are free to get started with, both are easy to install on Linux and Windows, and both have wide programming language support for popular languages like Java, node.js, and Python.
+
+In addition, MongoDB offers MongoDB Atlas, a managed cloud solution which is also forever free to use for exploratory purposes, while for a MySQL managed cloud version, you would need to have an account with one of the major public cloud providers and fall within their free tier terms in order to not pay.
+
+
+MongoDB vs. MySQL security
+MongoDB leverages the popular role-based access control model with a flexible set of permissions. Users are assigned to a role, and that role grants them specific permissions over datasets and database operations. All communication is encrypted with TLS, and it’s possible to write encrypted documents to MongoDB data collections using a master key which is never available to MongoDB, achieving encryption of data at rest.
+
+MySQL supports the same encryption features as MongoDB; its authentication model is also similar. Users can be granted roles but also privileges, giving them permissions over particular database operations and against particular datasets.
+
+
